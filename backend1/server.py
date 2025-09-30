@@ -10,6 +10,9 @@ from stock_analyzer import stock_analyzer  # import the stock analyzer function
 app = Flask(__name__)
 CORS(app)
 
+#------------------------------------
+# Emotion Detection Route
+#------------------------------------
 @app.route("/analyze", methods=["POST"])
 def analyze():
     data = request.get_json()
@@ -21,6 +24,9 @@ def analyze():
     emotion = emotion_detector(text)  # your existing Python function
     return jsonify(emotion)
 
+#------------------------------------
+# Stock Analyzer Route
+#------------------------------------
 @app.route("/stock-analyzer", methods=["POST"])
 def analyze_stock():
     data = request.get_json()

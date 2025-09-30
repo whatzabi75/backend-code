@@ -31,11 +31,12 @@ def analyze():
 def analyze_stock():
     data = request.get_json()
     symbol = data.get("symbol", "").upper()
+    range_ = data.get("range", "6mo")
     
     if not symbol:
         return jsonify({"error": "No stock symbol provided"}), 400
 
-    analysis = stock_analyzer(symbol)  # call the stock analyzer function
+    analysis = stock_analyzer(symbol, range_)  # call the stock analyzer function
     return jsonify(analysis)
 
 if __name__ == "__main__":

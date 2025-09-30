@@ -13,7 +13,7 @@ def safe_round(value, decimals=2):
     except Exception:
         return value
 
-def stock_analyzer(symbol: str):
+def stock_analyzer(symbol: str, range: str = "6mo"):
     """
     Fetch stock data and return a structured analysis and LLM verdict.
     """
@@ -104,6 +104,18 @@ def stock_analyzer(symbol: str):
         except Exception:
             analyst_ratings = {"buy": 0, "hold": 0, "sell": 0}
 
+        # Fetch historical price data
+        try:
+            hist = stock.history(period=range)
+            history = []
+            for date, row in hist.iterrows():
+                history.append({
+                    "date": date.strftime("%Y-%m-%d"),
+                    "close": round(row["Close"], 2) if not (row["Close"] is None) else None
+                })
+        except Exception:
+            history = []
+
         # Placeholder AI verdict (later we’ll add Hugging Face/OpenAI)
         verdict = run_llm_analysis(financials, company_summary)
 
@@ -113,6 +125,7 @@ def stock_analyzer(symbol: str):
             "financials": financials,
             "analyst_ratings": analyst_ratings,
             "verdict": verdict,
+            "history": history,
         }
 
     except Exception as e:

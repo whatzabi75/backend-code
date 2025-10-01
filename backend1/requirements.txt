@@ -12,3 +12,4 @@ faiss-cpu
 langchain
 langchain-openai
 PyPDF2
+numpy

@@ -2,6 +2,7 @@ import os
 import tempfile
 import faiss
 import pickle
+import numpy as np
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI

@@ -8,3 +8,7 @@ gunicorn
 yfinance
 python-dotenv
 openai
+faiss-cpu
+langchain
+langchain-openai
+PyPDF2

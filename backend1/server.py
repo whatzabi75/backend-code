@@ -10,7 +10,7 @@ from stock_analyzer import stock_analyzer  # import the stock analyzer function
 from rag_upload import process_pdf, answer_question  # import the RAG deployment function
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 #------------------------------------
 # Emotion Detection Route
